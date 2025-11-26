@@ -5,19 +5,65 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Descarga BluetoothChat</title>
   <style>
-    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; background:#0f172a; color:#e6eef8; }
-    .card { background:#0b1220; padding:28px; border-radius:12px; box-shadow:0 8px 30px rgba(2,6,23,0.7); text-align:center; width:320px; }
-    h1 { margin:0 0 12px; font-size:20px; }
-    p { margin:0 0 18px; color:#a8bfd6; font-size:14px; }
-    button { appearance:none; border:0; padding:12px 16px; border-radius:8px; font-weight:600; cursor:pointer; background:linear-gradient(180deg,#0ea5a6,#04839a); color:white; }
-    small { display:block; margin-top:12px; color:#7f99b6; font-size:12px; }
+    body { 
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+      background:#0f172a;
+      color:#e6eef8;
+    }
+    .card { 
+      background:#0b1220;
+      padding:28px;
+      border-radius:12px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.7);
+      text-align:center;
+      width:320px;
+    }
+    h1 { 
+      margin:0 0 12px;
+      font-size:20px;
+    }
+    p { 
+      margin:0 0 18px;
+      color:#a8bfd6;
+      font-size:14px;
+    }
+    img {
+      width:90px;
+      height:90px;
+      object-fit:contain;
+      margin-bottom:16px;
+      border-radius:14px;
+    }
+    button { 
+      appearance:none;
+      border:0;
+      padding:12px 16px;
+      border-radius:8px;
+      font-weight:600;
+      cursor:pointer;
+      background:linear-gradient(180deg,#0ea5a6,#04839a);
+      color:white;
+      width:100%;
+    }
+    small { 
+      display:block;
+      margin-top:12px;
+      color:#7f99b6;
+      font-size:12px;
+    }
   </style>
 </head>
 <body>
   <div class="card">
+    <img src="eD.png" alt="Icono de la app" />
+
     <h1>BluetoothChat.apk</h1>
     <p>Pulsa el botón para descargar</p>
-    <img src = "eD.png"/>
 
     <a id="linkDownload" href="BluetoothChat.apk" download style="text-decoration:none; display:block;">
       <button id="btnDownload">Descargar APK</button>
@@ -27,17 +73,16 @@
   </div>
 
   <script>
-
     (function() {
       const btn = document.getElementById('btnDownload');
-      const link = document.getElementById('linkDownload');
       const status = document.getElementById('status');
-      const FILE_URL = 'BluetoothChat.apk'; // Debe estar en la misma carpeta que index.html
-      const MAX_SAFE_SIZE_MB = 80; // advertencia si es grande
+      const FILE_URL = 'BluetoothChat.apk';
+      const MAX_SAFE_SIZE_MB = 80;
 
       async function tryDownloadViaFetch() {
         try {
           status.textContent = 'Preparando descarga...';
+
           const headResp = await fetch(FILE_URL, { method: 'HEAD' }).catch(()=>null);
           if (headResp && headResp.headers) {
             const size = headResp.headers.get('content-length');
@@ -67,6 +112,7 @@
           status.textContent = 'No se pudo usar el fallback. Intenta con el enlace directo.';
         }
       }
+
       btn.addEventListener('click', (e) => {
         if (e.shiftKey) {
           e.preventDefault();
